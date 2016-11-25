@@ -5,6 +5,24 @@ body {
   font-weight: 100;
 }
 
+.QuestionDetail {
+  padding: 2rem;
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-flow: column;
+}
+
+.QuestionDetail > div {
+  margin-bottom: 1rem;
+}
+
+.QuestionDetail > div > span {
+  background-color: rgb(10, 10, 10);
+  color: White;
+  padding: 0.1rem 0.5rem;
+  margin-right: 1rem;
+}
+
 .QuestionList {
   list-style: none;
   padding: 0;
