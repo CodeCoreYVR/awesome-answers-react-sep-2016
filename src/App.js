@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import QuestionList from './QuestionList';
 import $ from 'jquery';
 
 const BASE_URL = 'http://localhost:3001';
@@ -34,11 +35,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          // JSON.stringify converts a javascript object
-          // into a JSON string
-          JSON.stringify(this.state.questions)
-        }
+        <QuestionList questions={this.state.questions} />
       </div>
     );
   }
