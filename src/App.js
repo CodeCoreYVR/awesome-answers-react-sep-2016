@@ -18,6 +18,7 @@ class App extends Component {
     // when a question is clicked
     // we must garantee that it still has this. bind it!
     this.expandQuestion = this.expandQuestion.bind(this);
+    this.clearQuestion = this.clearQuestion.bind(this);
   }
 
   getQuestion(id) {
@@ -46,6 +47,10 @@ class App extends Component {
     })
   }
 
+  clearQuestion () {
+    this.setState({question: undefined})
+  }
+
   expandQuestion (id) {
     // expandQuestion is called when a question from the
     // QuestionList component is clicked
@@ -64,7 +69,13 @@ class App extends Component {
     // If we have the data of a question stored in the state, let's
     // render it. Otherwise, render the list of questions
     if (this.state.question) {
-      content = <QuestionDetail question={this.state.question} />
+      // your own components do not implement event callbacks
+      // if you want to use them, you have to implement them yourself
+      // usually, this means forwarding an event from a base html component
+      // as we did for QuestionDetail with onBackClick
+      content = <QuestionDetail
+        onBackClick={this.clearQuestion}
+        question={this.state.question} />
     } else {
       content = <QuestionList
         questions={this.state.questions}

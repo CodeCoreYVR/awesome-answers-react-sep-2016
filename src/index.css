@@ -23,6 +23,17 @@ body {
   margin-right: 1rem;
 }
 
+.BackButton {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+}
+
+.BackButton:hover {
+  color: White;
+  background-color: rgb(10, 10, 10);
+}
+
 .QuestionList {
   list-style: none;
   padding: 0;
