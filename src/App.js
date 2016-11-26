@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import QuestionList from './QuestionList';
 import QuestionDetail from './QuestionDetail'
+import QuestionForm from './QuestionForm'
 import $ from 'jquery';
 
 const BASE_URL = 'http://localhost:3001';
@@ -19,6 +20,7 @@ class App extends Component {
     // we must garantee that it still has this. bind it!
     this.expandQuestion = this.expandQuestion.bind(this);
     this.clearQuestion = this.clearQuestion.bind(this);
+    this.createQuestion = this.createQuestion.bind(this);
   }
 
   getQuestion(id) {
@@ -47,6 +49,19 @@ class App extends Component {
     })
   }
 
+  postQuestions(questionParams) {
+    $.ajax({
+      url: `${BASE_URL}/api/v1/questions`,
+      data: {question: questionParams},
+      method: 'POST',
+      success: function (response) {
+        // if the POST succeeds, reload the list
+        // of questions
+        this.getQuestions()
+      }.bind(this)
+    })
+  }
+
   clearQuestion () {
     this.setState({question: undefined})
   }
@@ -55,6 +70,10 @@ class App extends Component {
     // expandQuestion is called when a question from the
     // QuestionList component is clicked
     this.getQuestion(id)
+  }
+
+  createQuestion (questionParams) {
+    this.postQuestions(questionParams)
   }
 
   componentDidMount () {
@@ -84,6 +103,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <QuestionForm onSubmit={this.createQuestion} />
         { content }
       </div>
     );
